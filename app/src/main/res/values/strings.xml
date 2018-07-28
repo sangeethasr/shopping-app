@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Local Shopper</string>
+
+    <!--Login activity-->
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="login_btn_text">Login</string>
+    <string name="already_loged_in_text">Already logged in?</string>
+    <string name="register_btn_text">Register.</string>
+    <string name="title_activity_buyer_home">BuyerHome</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_seller_home">SellerHomeActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
