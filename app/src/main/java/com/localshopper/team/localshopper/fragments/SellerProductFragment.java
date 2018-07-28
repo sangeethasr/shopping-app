@@ -1,4 +1,4 @@
-package com.localshopper.team.localshopper.activities;
+package com.localshopper.team.localshopper.fragments;
 
 
 import android.os.Bundle;

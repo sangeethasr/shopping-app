@@ -12,10 +12,10 @@ import com.localshopper.team.localshopper.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BuyerProductFragment extends Fragment {
+public class NearbySellerFragment extends Fragment {
 
 
-    public BuyerProductFragment() {
+    public NearbySellerFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class BuyerProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_buyer_product, container, false);
+        return inflater.inflate(R.layout.fragment_nearby_seller, container, false);
     }
 
 }

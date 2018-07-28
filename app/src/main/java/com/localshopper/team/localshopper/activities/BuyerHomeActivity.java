@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import com.localshopper.team.localshopper.R;
 import com.localshopper.team.localshopper.fragments.BuyerCartFragment;
 import com.localshopper.team.localshopper.fragments.BuyerOrdersFragment;
-import com.localshopper.team.localshopper.fragments.BuyerProductFragment;
+import com.localshopper.team.localshopper.fragments.NearbySellerFragment;
 
 public class BuyerHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,8 +42,8 @@ public class BuyerHomeActivity extends AppCompatActivity
 
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        BuyerProductFragment buyerProductFragment = new BuyerProductFragment();
-        fragmentTransaction.replace(R.id.frag_holder_act_buyhome, buyerProductFragment);
+        NearbySellerFragment nearbySellerFragment = new NearbySellerFragment();
+        fragmentTransaction.replace(R.id.frag_holder_act_buyhome, nearbySellerFragment);
         fragmentTransaction.commit();
     }
 
@@ -54,11 +54,11 @@ public class BuyerHomeActivity extends AppCompatActivity
         } else {
             Fragment fragment = this.fragmentManager.findFragmentById(R.id.frag_holder_act_buyhome);
 
-            if (!(fragment instanceof BuyerProductFragment)) {
+            if (!(fragment instanceof NearbySellerFragment)) {
                 setTitle("Store");
-                BuyerProductFragment buyerProductFragment = new BuyerProductFragment();
+                NearbySellerFragment nearbySellerFragment = new NearbySellerFragment();
                 fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frag_holder_act_buyhome, buyerProductFragment);
+                fragmentTransaction.replace(R.id.frag_holder_act_buyhome, nearbySellerFragment);
                 fragmentTransaction.commit();
                 navigationView.setCheckedItem(R.id.nav_buyer_home);
             } else {
@@ -72,7 +72,7 @@ public class BuyerHomeActivity extends AppCompatActivity
         Fragment fragment = this.getSupportFragmentManager().findFragmentById(R.id.frag_holder_act_buyhome);
         switch (fragmentNumber) {
             case 0:
-                if (fragment instanceof BuyerProductFragment) {
+                if (fragment instanceof NearbySellerFragment) {
                     return true;
                 }
                 break;
@@ -104,8 +104,8 @@ public class BuyerHomeActivity extends AppCompatActivity
                 } else {
                     setTitle("Store");
                     fragmentTransaction = fragmentManager.beginTransaction();
-                    BuyerProductFragment buyerProductFragment = new BuyerProductFragment();
-                    fragmentTransaction.replace(R.id.frag_holder_act_buyhome, buyerProductFragment);
+                    NearbySellerFragment nearbySellerFragment = new NearbySellerFragment();
+                    fragmentTransaction.replace(R.id.frag_holder_act_buyhome, nearbySellerFragment);
                     fragmentTransaction.commit();
                 }
                 break;
