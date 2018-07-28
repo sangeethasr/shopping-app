@@ -34,9 +34,9 @@ public class SellerProductAdapter extends RecyclerView.Adapter<SellerProductAdap
     @Override
     public void onBindViewHolder(@NonNull SellerProductViewHolder holder, int position) {
         ItemsModel model = itemModelsArray.get(position);
-        holder.nameTxt.setText(model.getName());
-        holder.descriptionTxt.setText(model.getDescription());
-        holder.priceTxt.setText(String.valueOf(model.getRate()));
+//        holder.nameTxt.setText(model.getName());
+//        holder.descriptionTxt.setText(model.getDescription());
+//        holder.priceTxt.setText(String.valueOf(model.getRate()));
     }
 
     @Override

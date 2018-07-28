@@ -46,7 +46,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         db = FirebaseFirestore.getInstance();
 
         registerBtn.setOnClickListener(this);
-
     }
 
 

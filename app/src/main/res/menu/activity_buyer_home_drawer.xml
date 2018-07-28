@@ -5,33 +5,41 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_buyer_home"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="Shop" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_buyer_orders"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Orders" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_buyer_cart"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Cart" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Communication">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_buyer_contact_us"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="Contact Us" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_buyer_feedback"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Feedback" />
+        </menu>
+    </item>
+    <item android:title="Application">
+        <menu>
+            <item
+                android:id="@+id/nav_buyer_settings"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Settings" />
+            <item
+                android:id="@+id/nav_buyer_logout"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Logout" />
         </menu>
     </item>
 

@@ -1,13 +1,13 @@
 package com.localshopper.team.localshopper.models;
 
 public class ItemsModel {
-    String id;
-    String name;
-    String unit;
-    double rate;
-    String description;
-    String imageUrl;
-    float overallRating;
+    private String id;
+    private String title;
+    private String unit;
+    private double rate;
+    private String description;
+    private String imageUrl;
+    private float overallRating;
 
     public ItemsModel() {
         this.imageUrl = "testUrl";
@@ -22,12 +22,12 @@ public class ItemsModel {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getUnit() {

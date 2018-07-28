@@ -8,4 +8,8 @@
     tools:context=".activities.BuyerHomeActivity"
     tools:showIn="@layout/app_bar_buyer_home">
 
+    <FrameLayout
+        android:id="@+id/frag_holder_act_buyhome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </android.support.constraint.ConstraintLayout>

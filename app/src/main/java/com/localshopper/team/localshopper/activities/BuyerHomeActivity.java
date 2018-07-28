@@ -2,66 +2,93 @@ package com.localshopper.team.localshopper.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.localshopper.team.localshopper.R;
+import com.localshopper.team.localshopper.fragments.BuyerCartFragment;
+import com.localshopper.team.localshopper.fragments.BuyerOrdersFragment;
+import com.localshopper.team.localshopper.fragments.BuyerProductFragment;
 
 public class BuyerHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    DrawerLayout drawer;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        BuyerProductFragment buyerProductFragment = new BuyerProductFragment();
+        fragmentTransaction.replace(R.id.frag_holder_act_buyhome, buyerProductFragment);
+        fragmentTransaction.commit();
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            Fragment fragment = this.fragmentManager.findFragmentById(R.id.frag_holder_act_buyhome);
+
+            if (!(fragment instanceof BuyerProductFragment)) {
+                setTitle("Store");
+                BuyerProductFragment buyerProductFragment = new BuyerProductFragment();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frag_holder_act_buyhome, buyerProductFragment);
+                fragmentTransaction.commit();
+                navigationView.setCheckedItem(R.id.nav_buyer_home);
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.buyer_home, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public boolean checkFragmentType(int fragmentNumber) {
+        Fragment fragment = this.getSupportFragmentManager().findFragmentById(R.id.frag_holder_act_buyhome);
+        switch (fragmentNumber) {
+            case 0:
+                if (fragment instanceof BuyerProductFragment) {
+                    return true;
+                }
+                break;
+            case 1:
+                if (fragment instanceof BuyerOrdersFragment) {
+                    return true;
+                }
+                break;
+            case 2:
+                if (fragment instanceof BuyerCartFragment) {
+                    return true;
+                }
+            default:
+                return false;
         }
-
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -70,22 +97,53 @@ public class BuyerHomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        switch (id) {
+            case R.id.nav_buyer_home:
+                if (checkFragmentType(0)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                } else {
+                    setTitle("Store");
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    BuyerProductFragment buyerProductFragment = new BuyerProductFragment();
+                    fragmentTransaction.replace(R.id.frag_holder_act_buyhome, buyerProductFragment);
+                    fragmentTransaction.commit();
+                }
+                break;
+            case R.id.nav_buyer_orders:
+                if (checkFragmentType(1)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                } else {
+                    setTitle("Orders");
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    BuyerOrdersFragment buyerOrdersFragment = new BuyerOrdersFragment();
+                    fragmentTransaction.replace(R.id.frag_holder_act_buyhome, buyerOrdersFragment);
+                    fragmentTransaction.commit();
+                }
+                break;
+            case R.id.nav_buyer_cart:
+                if (checkFragmentType(2)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                } else {
+                    setTitle("Cart");
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    BuyerCartFragment buyerCartFragment = new BuyerCartFragment();
+                    fragmentTransaction.replace(R.id.frag_holder_act_buyhome, buyerCartFragment);
+                    fragmentTransaction.commit();
+                }
+                break;
+            case R.id.nav_buyer_contact_us:
+                break;
+            case R.id.nav_buyer_feedback:
+                break;
+            case R.id.nav_buyer_settings:
+                break;
+            case R.id.nav_buyer_logout:
+                break;
+            default:
+                break;
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
