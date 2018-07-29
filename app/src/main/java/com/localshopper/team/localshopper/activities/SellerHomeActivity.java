@@ -31,6 +31,7 @@ public class SellerHomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_home);
 
+        setTitle("Showcase");
         if (findViewById(R.id.seller_prodt_container) != null) {
             if (savedInstanceState != null) {
                 return;
@@ -95,6 +96,18 @@ public class SellerHomeActivity extends AppCompatActivity
                 if (checkFragmentType(0)) {
                     drawer.closeDrawer(GravityCompat.START);
                 } else {
+                    setTitle("Showcase");
+                    SellerProductFragment sellerProductFragment = new SellerProductFragment();
+                    fragmentTransaction = getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.seller_prodt_container, sellerProductFragment, null);
+                    fragmentTransaction.commit();
+                }
+                break;
+            case R.id.nav_seller_Order:
+                if (checkFragmentType(1)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                } else {
                     setTitle("Orders");
                     OrderFragment orderFragment = new OrderFragment();
                     fragmentTransaction = getSupportFragmentManager()
@@ -115,6 +128,7 @@ public class SellerHomeActivity extends AppCompatActivity
             case R.id.nav_seller_buy:
                 startActivity(new Intent(SellerHomeActivity.this, BuyerHomeActivity.class));
                 finish();
+                break;
             case R.id.nav_seller_logout:
                 SharedPreferences sharedPreferences;
                 SharedPreferences.Editor editor;

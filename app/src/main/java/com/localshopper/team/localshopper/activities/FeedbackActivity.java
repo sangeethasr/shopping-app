@@ -21,6 +21,7 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
         feedbackMessageEdtTxt = findViewById(R.id.feedback_nsg_edtxt_act_feed);
         submitButton = findViewById(R.id.submit_feedback_btn_act_feed);
         submitButton.setOnClickListener(this);
+        setTitle("Feedback");
 
     }
 

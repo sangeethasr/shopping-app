@@ -1,8 +1,6 @@
 package com.localshopper.team.localshopper.fragments;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -20,7 +18,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.localshopper.team.localshopper.R;
 import com.localshopper.team.localshopper.adapters.NearbyProductsAdapter;
-import com.localshopper.team.localshopper.constants.Constants;
 import com.localshopper.team.localshopper.models.ItemsModel;
 
 import java.util.ArrayList;
@@ -54,16 +51,13 @@ public class NearbyItemsFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(nearbyProductsAdapter);
-//        fetchData();
+        fetchData();
         return view;
     }
 
     public void fetchData() {
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences(Constants.PREF_FILE, Context.MODE_PRIVATE);
-        String username = sharedPreferences.getString(Constants.USER_NAME, "");
-
         db.collection("users")
-                .document()
+                .document("seller")
                 .collection("products")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

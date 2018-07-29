@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.BuyerProductDetailsActivity">
 
@@ -15,7 +16,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/prod_image_act_buyprodes"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:src="@drawable/profile_picture" />
@@ -26,6 +28,9 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:layout_marginTop="16dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     android:id="@+id/title_txtview_act_buyprodes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -1,6 +1,8 @@
 package com.localshopper.team.localshopper.models;
 
-public class ItemsModel {
+import java.io.Serializable;
+
+public class ItemsModel implements Serializable {
     private String id;
     private String title;
     private String unit;

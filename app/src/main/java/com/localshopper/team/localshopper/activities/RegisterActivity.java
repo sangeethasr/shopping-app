@@ -41,6 +41,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        setTitle("Klant Signup");
+
         initViews();
 
         db = FirebaseFirestore.getInstance();

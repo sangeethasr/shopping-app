@@ -46,9 +46,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         int loginStatus = sharedPreferences.getInt(Constants.LOGIN_STATUS_PREF_VAR, Constants.LOGGED_OUT);
         if (loginStatus == Constants.LOGGED_IN) {
             startActivity(new Intent(LoginActivity.this, BuyerHomeActivity.class));
+            finish();
         }
 
         setContentView(R.layout.activity_login);
+        setTitle("Klant Login");
         initViews();
 
         db = FirebaseFirestore.getInstance();

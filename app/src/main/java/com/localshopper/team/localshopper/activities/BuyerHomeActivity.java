@@ -46,6 +46,7 @@ public class BuyerHomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         fragmentManager = getSupportFragmentManager();
+        setTitle("Store");
         fragmentTransaction = fragmentManager.beginTransaction();
         NearbyItemsFragment nearbyItemsFragment = new NearbyItemsFragment();
         fragmentTransaction.replace(R.id.frag_holder_act_buyhome, nearbyItemsFragment);

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Local Shopper</string>
+    <string name="app_name">Klant</string>
 
     <!--Login activity-->
     <string name="username_hint">Username</string>

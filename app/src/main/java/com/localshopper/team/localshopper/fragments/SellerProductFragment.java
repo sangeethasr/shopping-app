@@ -76,7 +76,7 @@ public class SellerProductFragment extends Fragment implements View.OnClickListe
         String username = sharedPreferences.getString(Constants.USER_NAME, "");
 
         db.collection("users")
-                .document(username)
+                .document(Constants.SELLER)
                 .collection("products")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

@@ -13,10 +13,11 @@ import android.widget.TextView;
 import com.localshopper.team.localshopper.R;
 import com.localshopper.team.localshopper.activities.BuyerProductDetailsActivity;
 import com.localshopper.team.localshopper.models.ItemsModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class NearbyProductsAdapter extends RecyclerView.Adapter<NearbyProductsAdapter.NearbyProductsViewHolder> implements View.OnClickListener {
+public class NearbyProductsAdapter extends RecyclerView.Adapter<NearbyProductsAdapter.NearbyProductsViewHolder> {
     ArrayList<ItemsModel> itemsModelsArrayList;
 
     public void setItemsModelsArrayList(ArrayList<ItemsModel> itemsModelsArrayList) {
@@ -37,8 +38,19 @@ public class NearbyProductsAdapter extends RecyclerView.Adapter<NearbyProductsAd
         holder.titleTxtView.setText(itemsModel.getTitle());
         holder.priceTxtView.setText(String.valueOf(itemsModel.getRate()));
         holder.ratingTxtView.setText(String.valueOf(itemsModel.getOverallRating()));
+        Picasso.get()
+                .load(itemsModel.getImageUrl())
+                .placeholder(R.drawable.item_placeholder)
+                .resize(50, 50)
+                .centerCrop()
+                .into(holder.productImageView);
+        String description = itemsModel.getDescription();
+        if (description.length() > 22) {
+            description = description.substring(0, 22);
+            description = description + "...";
+        }
 
-        holder.item.setOnClickListener(this);
+        holder.descTxtView.setText(description);
     }
 
     @Override
@@ -46,23 +58,34 @@ public class NearbyProductsAdapter extends RecyclerView.Adapter<NearbyProductsAd
         return itemsModelsArrayList.size();
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.nearby_prod_list_item) {
-            view.getContext().startActivity(new Intent(view.getContext(), BuyerProductDetailsActivity.class));
-        }
-    }
 
-    public class NearbyProductsViewHolder extends RecyclerView.ViewHolder {
+    public class NearbyProductsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         LinearLayout item;
         ImageView productImageView;
         TextView titleTxtView;
+        TextView descTxtView;
         TextView priceTxtView;
         TextView ratingTxtView;
 
         public NearbyProductsViewHolder(View itemView) {
             super(itemView);
             item = itemView.findViewById(R.id.nearby_prod_list_item);
+            titleTxtView = itemView.findViewById(R.id.pro_title_txtview_list_nearby);
+            priceTxtView = itemView.findViewById(R.id.pro_rate_txtview_list_nearby);
+            descTxtView = itemView.findViewById(R.id.pro_desc_txtview_list_nearby);
+            ratingTxtView = itemView.findViewById(R.id.pro_rating_txtview_list_nearby);
+            productImageView = itemView.findViewById(R.id.itemimage_imgview_list_nearby);
+            item.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            if (view.getId() == R.id.nearby_prod_list_item) {
+                Intent intent = new Intent(view.getContext(), BuyerProductDetailsActivity.class);
+                intent.putExtra("data", itemsModelsArrayList.get(position));
+                view.getContext().startActivity(intent);
+            }
         }
     }
 

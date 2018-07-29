@@ -14,13 +14,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.localshopper.team.localshopper.R;
+import com.localshopper.team.localshopper.constants.Constants;
 import com.localshopper.team.localshopper.models.ItemsModel;
 
 import es.dmoral.toasty.Toasty;
 
 public class AddProductActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String USER_NAME = "abcxyz";
     private static final String TAG = "AddProductActivity";
 
     TextInputEditText itemTitleEdtTxt;
@@ -67,7 +67,7 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
 
     private void addItemToFirestore(ItemsModel itemModel) {
 
-        DocumentReference productDocumentRef = db.collection("users").document(USER_NAME).collection("products").document();
+        DocumentReference productDocumentRef = db.collection("users").document(Constants.SELLER).collection("products").document();
         productDocumentRef.set(itemModel)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
