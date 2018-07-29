@@ -63,8 +63,8 @@ public class NearbyItemsFragment extends Fragment {
         String username = sharedPreferences.getString(Constants.USER_NAME, "");
 
         db.collection("users")
-                .document(username)
-                .collection("outgoing_orders")
+                .document()
+                .collection("products")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
