@@ -38,6 +38,7 @@ public class BuyerProductDetailsActivity extends AppCompatActivity implements Vi
         productTitleTxtView = findViewById(R.id.title_txtview_act_buyprodes);
         productDescTxtView = findViewById(R.id.desc_txtview_act_buyprodes);
         addToCartFab = findViewById(R.id.add_to_cart_fab_act_buyprodes);
+        addToCartFab.setOnClickListener(this);
     }
 
     private void addCartBottomSheet() {
@@ -63,7 +64,10 @@ public class BuyerProductDetailsActivity extends AppCompatActivity implements Vi
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == okButton.getId()) {
+        if (v.getId() == addToCartFab.getId()) {
+            addCartBottomSheet();
+
+        } else if (v.getId() == okButton.getId()) {
             dialog.cancel();
         }
     }
