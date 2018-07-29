@@ -18,6 +18,7 @@
                 android:id="@+id/fname_edtxt_act_reg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
                 android:hint="Enter your First name" />
         </android.support.design.widget.TextInputLayout>
 
@@ -29,6 +30,7 @@
                 android:id="@+id/lname_edtxt_act_reg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
                 android:hint="Enter your Last name" />
         </android.support.design.widget.TextInputLayout>
 
@@ -40,6 +42,7 @@
             android:id="@+id/username_edtxt_act_reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
             android:hint="Username" />
 
         <android.support.design.widget.TextInputLayout
@@ -51,6 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:layout_marginTop="6dp"
                 android:hint="Password" />
         </android.support.design.widget.TextInputLayout>
 
@@ -64,6 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPostalAddress"
+                android:layout_marginTop="6dp"
                 android:hint="Address" />
         </android.support.design.widget.TextInputLayout>
 
@@ -76,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:inputType="phone"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
                 android:hint="Phone No" />
         </android.support.design.widget.TextInputLayout>
 
@@ -87,6 +93,7 @@
                 android:id="@+id/email_edtxt_act_reg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
                 android:hint="Email" />
         </android.support.design.widget.TextInputLayout>
 
@@ -96,7 +103,10 @@
             android:layout_height="wrap_content"
             android:text="Register"
             android:textSize="20dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:textColor="#000000"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </ScrollView>

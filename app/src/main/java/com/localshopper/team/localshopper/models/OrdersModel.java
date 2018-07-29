@@ -14,6 +14,14 @@ public class OrdersModel {
     }
 
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public OrdersModel(ArrayList<OrderItemModel> items) {
         this.items = items;
     }

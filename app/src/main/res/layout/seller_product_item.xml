@@ -66,14 +66,14 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="review" />
+            android:text="Button" />
 
         <Button
             android:id="@+id/edit_btn_item_SPF"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="edit" />
+            android:text="Button" />
     </LinearLayout>
 
 
