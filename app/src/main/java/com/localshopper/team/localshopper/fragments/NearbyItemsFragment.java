@@ -19,23 +19,23 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.localshopper.team.localshopper.R;
-import com.localshopper.team.localshopper.adapters.BuyerCartAdapter;
+import com.localshopper.team.localshopper.adapters.NearbyProductsAdapter;
 import com.localshopper.team.localshopper.constants.Constants;
-import com.localshopper.team.localshopper.models.OrderItemModel;
+import com.localshopper.team.localshopper.models.ItemsModel;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BuyerCartFragment extends Fragment {
+public class NearbyItemsFragment extends Fragment {
 
     RecyclerView recyclerView;
-    ArrayList<OrderItemModel> itemsModelArrayList;
+    ArrayList<ItemsModel> itemsModelArrayList;
     FirebaseFirestore db;
-    BuyerCartAdapter buyerCartAdapter;
+    NearbyProductsAdapter nearbyProductsAdapter;
 
-    public BuyerCartFragment() {
+    public NearbyItemsFragment() {
         // Required empty public constructor
     }
 
@@ -44,15 +44,16 @@ public class BuyerCartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_buyer_cart, container, false);
-        recyclerView = view.findViewById(R.id.buyer_cart_recyc_frag_buycar);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        View view = inflater.inflate(R.layout.fragment_nearby_seller, container, false);
+        recyclerView = view.findViewById(R.id.nearby_seller_recyc_frg_near);
+
         itemsModelArrayList = new ArrayList<>();
         db = FirebaseFirestore.getInstance();
-        buyerCartAdapter = new BuyerCartAdapter();
-        buyerCartAdapter.setOrderItemModelArrayList(itemsModelArrayList);
-        recyclerView.setAdapter(buyerCartAdapter);
+        nearbyProductsAdapter = new NearbyProductsAdapter();
+        nearbyProductsAdapter.setItemsModelsArrayList(itemsModelArrayList);
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(nearbyProductsAdapter);
 //        fetchData();
         return view;
     }
@@ -63,7 +64,7 @@ public class BuyerCartFragment extends Fragment {
 
         db.collection("users")
                 .document(username)
-                .collection("cart")
+                .collection("outgoing_orders")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -71,8 +72,8 @@ public class BuyerCartFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
                                 Log.d("hello", document.getId());
-                                itemsModelArrayList.add(document.toObject(OrderItemModel.class));
-                                buyerCartAdapter.notifyDataSetChanged();
+                                itemsModelArrayList.add(document.toObject(ItemsModel.class));
+                                nearbyProductsAdapter.notifyDataSetChanged();
                             }
                         } else {
                             Log.d("Hello", "Error getting documents: ", task.getException());
@@ -81,5 +82,6 @@ public class BuyerCartFragment extends Fragment {
                 });
 
     }
+
 
 }

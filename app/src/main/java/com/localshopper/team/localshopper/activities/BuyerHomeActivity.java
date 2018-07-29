@@ -1,5 +1,8 @@
 package com.localshopper.team.localshopper.activities;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -13,9 +16,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.localshopper.team.localshopper.R;
+import com.localshopper.team.localshopper.constants.Constants;
 import com.localshopper.team.localshopper.fragments.BuyerCartFragment;
 import com.localshopper.team.localshopper.fragments.BuyerOrdersFragment;
-import com.localshopper.team.localshopper.fragments.NearbySellerFragment;
+import com.localshopper.team.localshopper.fragments.NearbyItemsFragment;
 
 public class BuyerHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,8 +46,8 @@ public class BuyerHomeActivity extends AppCompatActivity
 
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        NearbySellerFragment nearbySellerFragment = new NearbySellerFragment();
-        fragmentTransaction.replace(R.id.frag_holder_act_buyhome, nearbySellerFragment);
+        NearbyItemsFragment nearbyItemsFragment = new NearbyItemsFragment();
+        fragmentTransaction.replace(R.id.frag_holder_act_buyhome, nearbyItemsFragment);
         fragmentTransaction.commit();
     }
 
@@ -54,11 +58,11 @@ public class BuyerHomeActivity extends AppCompatActivity
         } else {
             Fragment fragment = this.fragmentManager.findFragmentById(R.id.frag_holder_act_buyhome);
 
-            if (!(fragment instanceof NearbySellerFragment)) {
+            if (!(fragment instanceof NearbyItemsFragment)) {
                 setTitle("Store");
-                NearbySellerFragment nearbySellerFragment = new NearbySellerFragment();
+                NearbyItemsFragment nearbyItemsFragment = new NearbyItemsFragment();
                 fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frag_holder_act_buyhome, nearbySellerFragment);
+                fragmentTransaction.replace(R.id.frag_holder_act_buyhome, nearbyItemsFragment);
                 fragmentTransaction.commit();
                 navigationView.setCheckedItem(R.id.nav_buyer_home);
             } else {
@@ -72,7 +76,7 @@ public class BuyerHomeActivity extends AppCompatActivity
         Fragment fragment = this.getSupportFragmentManager().findFragmentById(R.id.frag_holder_act_buyhome);
         switch (fragmentNumber) {
             case 0:
-                if (fragment instanceof NearbySellerFragment) {
+                if (fragment instanceof NearbyItemsFragment) {
                     return true;
                 }
                 break;
@@ -104,8 +108,8 @@ public class BuyerHomeActivity extends AppCompatActivity
                 } else {
                     setTitle("Store");
                     fragmentTransaction = fragmentManager.beginTransaction();
-                    NearbySellerFragment nearbySellerFragment = new NearbySellerFragment();
-                    fragmentTransaction.replace(R.id.frag_holder_act_buyhome, nearbySellerFragment);
+                    NearbyItemsFragment nearbyItemsFragment = new NearbyItemsFragment();
+                    fragmentTransaction.replace(R.id.frag_holder_act_buyhome, nearbyItemsFragment);
                     fragmentTransaction.commit();
                 }
                 break;
@@ -137,7 +141,20 @@ public class BuyerHomeActivity extends AppCompatActivity
                 break;
             case R.id.nav_buyer_settings:
                 break;
+            case R.id.nav_buyer_sell:
+                startActivity(new Intent(BuyerHomeActivity.this, SellerHomeActivity.class));
+                finish();
+                break;
             case R.id.nav_buyer_logout:
+                SharedPreferences sharedPreferences;
+                SharedPreferences.Editor editor;
+                sharedPreferences = getSharedPreferences(Constants.PREF_FILE, Context.MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+                editor.putInt(Constants.LOGIN_STATUS_PREF_VAR, Constants.LOGGED_OUT);
+                editor.putString(Constants.USER_NAME, "");
+                editor.apply();
+                startActivity(new Intent(BuyerHomeActivity.this, LoginActivity.class));
+                finish();
                 break;
             default:
                 break;

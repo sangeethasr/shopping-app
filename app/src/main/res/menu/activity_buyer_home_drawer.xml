@@ -33,6 +33,10 @@
     <item android:title="Application">
         <menu>
             <item
+                android:id="@+id/nav_buyer_sell"
+                android:icon="@drawable/ic_menu_share"
+                android:title="I want to sell" />
+            <item
                 android:id="@+id/nav_buyer_settings"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Settings" />

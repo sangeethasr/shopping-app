@@ -3,15 +3,18 @@ package com.localshopper.team.localshopper.models;
 import java.util.ArrayList;
 
 public class OrdersModel {
-    String orderId;
-    String buyerUsername;
-    String sellerUsername;
-    ArrayList<ItemsModel> items;
+    private String orderId;
+    private String buyerUsername;
+    private String sellerUsername;
+    private String date;
+    private int orderStatus;
+    private ArrayList<OrderItemModel> items;
 
     public OrdersModel() {
     }
 
-    public OrdersModel(ArrayList<ItemsModel> items) {
+
+    public OrdersModel(ArrayList<OrderItemModel> items) {
         this.items = items;
     }
 
@@ -39,11 +42,19 @@ public class OrdersModel {
         this.sellerUsername = sellerUsername;
     }
 
-    public ArrayList<ItemsModel> getItems() {
+    public int getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(int orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public ArrayList<OrderItemModel> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<ItemsModel> items) {
+    public void setItems(ArrayList<OrderItemModel> items) {
         this.items = items;
     }
 }

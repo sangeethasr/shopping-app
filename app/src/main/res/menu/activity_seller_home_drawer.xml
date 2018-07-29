@@ -24,6 +24,14 @@
                 android:id="@+id/nav_seller_feedback"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Feedback" />
+        </menu>
+    </item>
+    <item android:title="Application">
+        <menu>
+            <item
+                android:id="@+id/nav_seller_buy"
+                android:icon="@drawable/ic_menu_send"
+                android:title="I want to buy" />
             <item
                 android:id="@+id/nav_seller_settings"
                 android:icon="@drawable/ic_menu_send"

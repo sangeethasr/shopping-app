@@ -1,6 +1,8 @@
 package com.localshopper.team.localshopper.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
@@ -15,6 +17,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.localshopper.team.localshopper.R;
+import com.localshopper.team.localshopper.constants.Constants;
+import com.localshopper.team.localshopper.models.UserModel;
 
 import es.dmoral.toasty.Toasty;
 
@@ -37,7 +41,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //TODO : Check if already logged in using shared pref
+        SharedPreferences sharedPreferences;
+        sharedPreferences = getSharedPreferences(Constants.PREF_FILE, Context.MODE_PRIVATE);
+        int loginStatus = sharedPreferences.getInt(Constants.LOGIN_STATUS_PREF_VAR, Constants.LOGGED_OUT);
+        if (loginStatus == Constants.LOGGED_IN) {
+            startActivity(new Intent(LoginActivity.this, BuyerHomeActivity.class));
+        }
 
         setContentView(R.layout.activity_login);
         initViews();
@@ -61,6 +70,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(view.getId() == R.id.login_btn_act_log){
 
             username = usernameEdtTxt.getText().toString();
+            password = passwordEdtTxt.getText().toString();
             checkLogin();
         }
         else if (view.getId() == R.id.register_btn_act_log){
@@ -70,15 +80,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void checkLogin() {
 
-        DocumentReference docRef = db.collection("users").document(username);
+        final DocumentReference docRef = db.collection("users").document(username);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        Toasty.error(LoginActivity.this, "Logged in successfully.").show();
+                        UserModel userModel = document.toObject(UserModel.class);
+                        if (userModel.getPassword().equals(password)) {
+                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            SharedPreferences sharedPreferences;
+                            SharedPreferences.Editor editor;
+                            sharedPreferences = getSharedPreferences(Constants.PREF_FILE, Context.MODE_PRIVATE);
+                            editor = sharedPreferences.edit();
+                            editor.putInt(Constants.LOGIN_STATUS_PREF_VAR, Constants.LOGGED_IN);
+                            editor.putString(Constants.USER_NAME, userModel.getUsername());
+                            editor.apply();
+                            Toasty.success(LoginActivity.this, "Logged in successfully.").show();
+                            startActivity(new Intent(LoginActivity.this, BuyerHomeActivity.class));
+                            finish();
+                        }
                     } else {
                         Toasty.error(LoginActivity.this, "Username or password is incorrect.").show();
                     }

@@ -1,5 +1,8 @@
 package com.localshopper.team.localshopper.activities;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.localshopper.team.localshopper.R;
+import com.localshopper.team.localshopper.constants.Constants;
 import com.localshopper.team.localshopper.fragments.OrderFragment;
 import com.localshopper.team.localshopper.fragments.SellerProductFragment;
 
@@ -42,13 +46,13 @@ public class SellerHomeActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -80,8 +84,6 @@ public class SellerHomeActivity extends AppCompatActivity
         return false;
     }
 
-
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -104,9 +106,21 @@ public class SellerHomeActivity extends AppCompatActivity
                 break;
             case R.id.nav_buyer_feedback:
                 break;
+            case R.id.nav_seller_buy:
+                startActivity(new Intent(SellerHomeActivity.this, BuyerHomeActivity.class));
+                finish();
             case R.id.nav_buyer_settings:
                 break;
             case R.id.nav_buyer_logout:
+                SharedPreferences sharedPreferences;
+                SharedPreferences.Editor editor;
+                sharedPreferences = getSharedPreferences(Constants.PREF_FILE, Context.MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+                editor.putInt(Constants.LOGIN_STATUS_PREF_VAR, Constants.LOGGED_OUT);
+                editor.putString(Constants.USER_NAME, "");
+                editor.apply();
+                startActivity(new Intent(SellerHomeActivity.this, LoginActivity.class));
+                finish();
                 break;
             default:
                 break;
