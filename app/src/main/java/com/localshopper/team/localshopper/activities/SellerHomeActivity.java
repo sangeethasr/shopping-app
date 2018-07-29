@@ -17,6 +17,7 @@ import com.localshopper.team.localshopper.R;
 import com.localshopper.team.localshopper.constants.Constants;
 import com.localshopper.team.localshopper.fragments.OrderFragment;
 import com.localshopper.team.localshopper.fragments.SellerProductFragment;
+import com.localshopper.team.localshopper.fragments.SettingsActivity;
 
 public class SellerHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -102,16 +103,19 @@ public class SellerHomeActivity extends AppCompatActivity
                     fragmentTransaction.commit();
                 }
                 break;
-            case R.id.nav_buyer_contact_us:
+            case R.id.nav_seller_contact_us:
+                startActivity(new Intent(SellerHomeActivity.this, ContactUsActivity.class));
                 break;
-            case R.id.nav_buyer_feedback:
+            case R.id.nav_seller_feedback:
+                startActivity(new Intent(SellerHomeActivity.this, FeedbackActivity.class));
+                break;
+            case R.id.nav_seller_settings:
+                startActivity(new Intent(SellerHomeActivity.this, SettingsActivity.class));
                 break;
             case R.id.nav_seller_buy:
                 startActivity(new Intent(SellerHomeActivity.this, BuyerHomeActivity.class));
                 finish();
-            case R.id.nav_buyer_settings:
-                break;
-            case R.id.nav_buyer_logout:
+            case R.id.nav_seller_logout:
                 SharedPreferences sharedPreferences;
                 SharedPreferences.Editor editor;
                 sharedPreferences = getSharedPreferences(Constants.PREF_FILE, Context.MODE_PRIVATE);

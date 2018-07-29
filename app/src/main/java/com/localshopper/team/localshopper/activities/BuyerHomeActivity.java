@@ -20,6 +20,7 @@ import com.localshopper.team.localshopper.constants.Constants;
 import com.localshopper.team.localshopper.fragments.BuyerCartFragment;
 import com.localshopper.team.localshopper.fragments.BuyerOrdersFragment;
 import com.localshopper.team.localshopper.fragments.NearbyItemsFragment;
+import com.localshopper.team.localshopper.fragments.SettingsActivity;
 
 public class BuyerHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -136,10 +137,13 @@ public class BuyerHomeActivity extends AppCompatActivity
                 }
                 break;
             case R.id.nav_buyer_contact_us:
+                startActivity(new Intent(BuyerHomeActivity.this, ContactUsActivity.class));
                 break;
             case R.id.nav_buyer_feedback:
+                startActivity(new Intent(BuyerHomeActivity.this, FeedbackActivity.class));
                 break;
             case R.id.nav_buyer_settings:
+                startActivity(new Intent(BuyerHomeActivity.this, SettingsActivity.class));
                 break;
             case R.id.nav_buyer_sell:
                 startActivity(new Intent(BuyerHomeActivity.this, SellerHomeActivity.class));

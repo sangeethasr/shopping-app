@@ -25,9 +25,11 @@
             android:name=".activities.SellerHomeActivity"
             android:label="@string/title_activity_seller_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.AddProductActivity"></activity>
+        <activity android:name=".activities.AddProductActivity" />
         <activity android:name=".fragments.SettingsActivity" />
-        <activity android:name=".activities.BuyerProductDetailsActivity"></activity>
+        <activity android:name=".activities.BuyerProductDetailsActivity" />
+        <activity android:name=".activities.FeedbackActivity" />
+        <activity android:name=".activities.ContactUsActivity"></activity>
     </application>
 
 </manifest>
