@@ -14,7 +14,7 @@
             android:title="Orders" />
         <item
             android:id="@+id/nav_buyer_cart"
-            android:icon="@drawable/ic_cart"
+            android:icon="@drawable/ic_main_cart"
             android:title="Cart" />
     </group>
 
@@ -22,7 +22,7 @@
         <menu>
             <item
                 android:id="@+id/nav_buyer_contact_us"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_contact"
                 android:title="Contact Us" />
             <item
                 android:id="@+id/nav_buyer_feedback"
@@ -34,15 +34,15 @@
         <menu>
             <item
                 android:id="@+id/nav_buyer_sell"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_twist"
                 android:title="I want to sell" />
             <item
                 android:id="@+id/nav_buyer_settings"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_settings"
                 android:title="Settings" />
             <item
                 android:id="@+id/nav_buyer_logout"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_exist"
                 android:title="Logout" />
         </menu>
     </item>
